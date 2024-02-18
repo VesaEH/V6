@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -8,11 +9,15 @@ import java.util.Scanner;
  */
 public class App 
 {
+    /**
+     * @param args
+     */
     public static void main( String[] args )
     {
         //System.out.println( "Hello World!" );
 
         Scanner sc = new Scanner(System.in);
+        ArrayList<Vehicle> vehicles  = new ArrayList<>();
 
         boolean exit = false;
         while(!exit) {
@@ -24,11 +29,47 @@ public class App
 
                 switch (i) {
                     case 1:
+ 
                         System.out.println("Minkä kulkuneuvon haluat rakentaa? 1) auto, 2) lentokone, 3) laiva");
+                        int j = 0;
+                        String stringInput2 = sc.nextLine();
+                        j = Integer.parseInt(stringInput2);
+
+                        System.out.println("Anna kulkuneuvon valmistaja:");
+                        String manufacturer = sc.nextLine();
+                        System.out.println("Anna kulkuneuvon malli:");
+                        String model = sc.nextLine();
+                        System.out.println("Anna kulkuneuvon huippunopeus:");
+                        int maxSpeed = Integer.parseInt(sc.nextLine());
+                        
+                        switch (j) {
+                            case 1:
+                                vehicles.add(new Car(manufacturer, model, maxSpeed));
+                                break;
+                        
+                            case 2:
+                                vehicles.add(new Plane(manufacturer, model, maxSpeed));
+                                break;
+
+                            case 3:
+                                vehicles.add(new Ship(manufacturer, model, maxSpeed));
+                                break;
+
+                            default:
+                                System.out.println("Syöte oli väärä");
+                                break;
+                        }
+                        
+                        //vehicles.add(new Car(manufacturer, model, maxSpeed));
+
+
 
                         break;
                     case 2:
                         System.out.println("Listaa kulkuneuvot ");
+                        for (Vehicle vehicle: vehicles) {
+                            vehicle.printSpecs();
+                        }
                         break;
                     case 3:
                         System.out.println("Aja autoa");

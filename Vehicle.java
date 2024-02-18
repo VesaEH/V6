@@ -13,4 +13,8 @@ public class Vehicle {
         this.maxSpeed = maxSpeed;
     }
 
+    public void printSpecs() {
+        System.out.println( type + ": " + manufacturer + ": " + model + ": " + maxSpeed);
+    }
+
 }
